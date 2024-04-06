@@ -4,16 +4,23 @@ import pytest
 
 
 def agregar_bebida(entrada):
+    # Eliminar espacios en blanco de la entrada
     entrada = entrada.replace(" ", "")
+    # Dividir la entrada en una lista utilizando la coma como separador
     entrada = entrada.split(",")
+    # El primer elemento de la lista es el nombre de la bebida
     nombre = entrada[0]
+    # Los elementos restantes son los tamaños de la bebida
     tamanos = entrada[1:]
 
+    # Verificar que el nombre cumpla con las condiciones
     if not (2 <= len(nombre) <= 15) or not nombre.isalpha():
         raise ValueError("El nombre de la bebida es inválido")
 
+    # Convertir los tamaños a enteros
     tamanos = list(map(int, tamanos))
 
+    # Verificar que los tamaños cumplan con las condiciones
     if (
         len(tamanos) > 5
         or tamanos != sorted(tamanos)
@@ -21,6 +28,7 @@ def agregar_bebida(entrada):
     ):
         raise ValueError("Los tamaños de la bebida son inválidos")
 
+    # Devolver un diccionario con el nombre y los tamaños de la bebida
     return {"nombre": nombre, "tamanos": tamanos}
 
 
